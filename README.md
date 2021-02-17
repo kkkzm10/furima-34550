@@ -1,24 +1,55 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| name     | string | null: false |
+| email    | string | null: false |
+| password | string | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_one :purchase
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column       | Type       | Options     |
+| ------       | ------     | ----------- |
+| name         | string     | null: false |
+| item_info    | text       | null: false |
+| category     | string     | null: false |
+| status       | string     | null: false |
+| shipping_fee | string     | null: false |
+| prefecture   | string     | null: false |
+| schedule     | string     | null: false |
+| price        | integer    | null: false |
+| item_fee     | integer    | null: false |
+| profit       | integer    | null: false |
+| user         | references | null: false, foreign_key: true |
+| purchase     | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- belongs_to :purchase
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## purchases テーブル
 
-* ...
+| Column        | Type    | Options     |
+| ------        | --------| ------------|
+| card_num      | integer | null: false |
+| expiration    | integer | null: false |
+| security_code | integer | null: false |
+| mail_num      | integer | null: false |
+| postal_code   | integer | null: false |
+| prefecture    | string  | null: false |
+| address       | string  | null: false |
+| phone_num     | integer | null: false |
+
+### Association
+
+- belongs_to :user
+- has_many :items
