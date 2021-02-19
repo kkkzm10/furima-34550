@@ -121,6 +121,16 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("First name jpn 全角カナを使用してください")
     end
+    it 'family_name_jpnは半角では登録できない' do
+      @user.family_name_jpn = "ｶﾅ"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Family name jpn 全角カナを使用してください")
+    end
+    it "first_name_jpnは半角では登録できない" do
+      @user.first_name_jpn = "ｶﾅ"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name jpn 全角カナを使用してください")
+    end
    end
   end
 end
