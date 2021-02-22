@@ -5,11 +5,13 @@ class Item < ApplicationRecord
   belongs_to :shipping_fee
   belongs_to :prefecture
   belongs_to :schedule 
+  belongs_to :user
   has_one_attached :image
 
   with_options presence: true do
    validates :image
-   validates :title, :text
+   validates :name
+   validates :item_info
    validates :category_id,     numericality: { other_than: 1 }
    validates :status_id,       numericality: { other_than: 1 }
    validates :shipping_fee_id, numericality: { other_than: 1 }
