@@ -120,12 +120,11 @@
   </div>
   <%# /FURIMAの特徴 %>
 
-  
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>
-      <% @items.each do |item| %>
+      <% @items.all.each do |item| %>
       
       <li class='list'>
         <%= link_to "#" do %>
@@ -137,7 +136,6 @@
             <span>Sold Out!!</span>
           </div>
           <%# //商品が売れていればsold outを表示しましょう %>
-
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -154,9 +152,7 @@
       </li>
        <% end %>
      <% end %> 
-     
-   
-
+  
      <% if @items.length == 0 %>
       <li class='list'>
         <%= link_to '#' do %>
