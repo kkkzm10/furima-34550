@@ -12,11 +12,13 @@ class Item < ApplicationRecord
    validates :image
    validates :name
    validates :item_info
-   validates :category_id,     numericality: { other_than: 1 }
-   validates :status_id,       numericality: { other_than: 1 }
-   validates :shipping_fee_id, numericality: { other_than: 1 }
-   validates :prefecture_id,   numericality: { other_than: 1 }
-   validates :schedule_id,     numericality: { other_than: 1 }
+   with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :status_id
+    validates :shipping_fee_id
+    validates :prefecture_id 
+    validates :schedule_id   
+   end
    validates_inclusion_of :price, in:300..9999999, format: {with: /\A[0-9]+\z/, message: '半角数字を使用してください'}
   end 
 end
