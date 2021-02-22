@@ -17,7 +17,6 @@ class Item < ApplicationRecord
    validates :shipping_fee_id, numericality: { other_than: 1 }
    validates :prefecture_id,   numericality: { other_than: 1 }
    validates :schedule_id,     numericality: { other_than: 1 }
-   validates :price, format: {with: /\A[0-9]+\z/, message: '半角数字を使用してください'}
-   validates_inclusion_of :price, in:300..9999999
+   validates_inclusion_of :price, in:300..9999999, format: {with: /\A[0-9]+\z/, message: '半角数字を使用してください'}
   end 
 end
