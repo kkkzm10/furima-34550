@@ -7,7 +7,7 @@ class OrderAddress
     validates :city_name
     validates :address_num
    
-    validates :phone_num, format: {with: /\A\d{11}\z/, message: "is out of setting range"}
+    validates :phone_num, format: {with: /\A0[5789]0[-(]?\d{4}[-)]?\d{4}\z/, message: "is out of setting range"}
     validates :user_id
     validates :item_id
     validates :token
@@ -16,7 +16,7 @@ class OrderAddress
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
-    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city_name: city_name, address_num: address_num, building: building, phone_num: phone_num)
+    address = Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city_name: city_name, address_num: address_num, building: building, phone_num: phone_num, order_id: order.id)
   end
 
 end

@@ -49,6 +49,16 @@ RSpec.describe OrderAddress, type: :model do
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Phone num can't be blank")
     end
+    it "phone_numが12ケタ以上では登録できないこと" do
+      @order_address.phone_num = '0801234567899'
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include("Phone num is out of setting range")
+    end
+    it "phone_numが全角では登録できないこと" do
+      @order_address.phone_num = "０９０１２３４５６７８"
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include("Phone num is out of setting range")
+    end
     it "tokenが空では登録できないこと" do
       @order_address.token = nil
       @order_address.valid?
